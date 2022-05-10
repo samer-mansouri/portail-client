@@ -1,3 +1,4 @@
+
 /* eslint-disable react/prop-types */
 /* eslint-disable react/function-component-definition */
 /**
@@ -29,18 +30,23 @@ import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
+import MDButton from "components/MDButton";
+import DataModal from "../../modals/DataModal"
 import AdminService from "services/admin.service";
+
 
 
 export default function data() {
 
-  const [users, setUsers] = useState([]);
+  const [clients, setClients] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
 
   const fetchData = () => {
-    AdminService.getUtilisateurs()
+    AdminService.getClients()
     .then(res => {
       console.log(res.data)
-      setUsers(res.data)
+      setClients(res.data)
     }).catch(err => {
       console.log(err)
     })
@@ -96,30 +102,40 @@ export default function data() {
     </MDTypography>
   );
 
+  const OpenModalButton = ({ clientId}) => (
+    <>
+      <DataModal clientId={clientId}/>
+    </>
+    
+  )
+
+
 
   return {
+  
     columns: [
-      { Header: "id_pers", accessor: "id_pers", width: "15%", align: "left" },
-      { Header: "nom", accessor: "nom", align: "center" },
-      { Header: "prenom", accessor: "prenom", align: "center" },
-      { Header: "email", accessor: "email", align: "center" },
-      { Header: "password", accessor: "password", align: "center" },
-      { Header: "RS", accessor: "RS", align: "center" },
-      { Header: "TEL", accessor: "TEL", align: "center" },
-      { Header: "id_client", accessor: "id_client", align: "center" },
+      { Header: "paiement", accessor: "paiement", align: "center" },
+      { Header: "access_ssh", accessor: "access_ssh", align: "center" },
+      { Header: "access_web", accessor: "access_web", align: "center" },
+      { Header: "prix_total", accessor: "prix_total", align: "center" },
+      { Header: "nbre_licences", accessor: "nbre_licences", align: "center" },
+      { Header: "type_contrat", accessor: "type_contrat", align: "center" },
+      { Header: "date_de_paiement", accessor: "date_de_paiement", align: "center" },
+      { Header: "date_mise_enservice", accessor: "date_mise_enservice", align: "center" },
+
     ],
 
     rows: 
-      users.map((user) => {
+      clients.map((client) => {
         return {
-          id_pers:  <Data text={user.id_pers} />,
-          nom:  <Data text={user.nom} />,
-          prenom:  <Data text={user.prenom} />,
-          email:  <Data text={user.email} />,
-          password:  <Data text={user.password} />,
-          RS:  <Data text={user.RS} />,
-          TEL:  <Data text={user.TEL} />,
-          id_client:  <Data text={user.id_client} />,
+          paiement: <Paiement check={client.paiement} />,
+          access_ssh: <Access check={client.access_ssh} />,
+          access_web: <Access check={client.access_web} />,
+          prix_total: <Data text={client.prix_total} />,
+          nbre_licences: <Data text={client.nbre_licence} />,
+          type_contrat: <Data text={client.type_contrat} />,
+          date_de_paiement: <Data text={client.date_de_paiement} />,
+          date_mise_enservice: <Data text={client.date_mise_enservice} />,
         }
       }),
     

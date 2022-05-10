@@ -11,7 +11,11 @@ class AdminService {
     }
 
     getUtilisateurs() {
-        return api.get(`/utilisateurs`);
+        return api.get(`/utilisateurs?admin=false`);
+    }
+
+    getAdmins() {
+        return api.get(`/utilisateurs?admin=true`);
     }
 
     getWebservices() {

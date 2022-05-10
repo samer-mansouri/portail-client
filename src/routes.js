@@ -44,10 +44,11 @@ import Modules from "layouts/modules";
 import Utilisateurs from "layouts/utilisateurs";
 import KpiClients from "layouts/kpi_clients";
 import ModuleClients from "layouts/module_clients";
-
+import ClientDashboard from "layouts/dashboard/ClientDashboard";
+import Licences from "layouts/licences";
+import Admins from "layouts/admins";
 // @mui icons
 import Icon from "@mui/material/Icon";
-import TokenService from "services/token.service";
 
 const routes = [
   {
@@ -61,6 +62,15 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Accueil",
+    key: "informations",
+    icon: <Icon fontSize="small">home</Icon>,
+    route: "/informations",
+    component: <ClientDashboard />,
+    auth: "client",
+  },
+  {
+    type: "collapse",
     name: "Clients",
     key: "clients",
     icon: <Icon fontSize="small">support_agent</Icon>,
@@ -70,11 +80,29 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Licences",
+    key: "licences",
+    icon: <Icon fontSize="small">wysiwyg</Icon>,
+    route: "/licences",
+    component: <Licences />,
+    auth: "admin",
+  },
+  {
+    type: "collapse",
     name: "Utilisateurs",
     key: "utilisateurs",
     icon: <Icon fontSize="small">group</Icon>,
     route: "/utilisateurs",
     component: <Utilisateurs />,
+    auth: "admin",
+  },
+  {
+    type: "collapse",
+    name: "Administrateurs",
+    key: "administrateurs",
+    icon: <Icon fontSize="small">admin_panel_settings</Icon>,
+    route: "/admins",
+    component: <Admins />,
     auth: "admin",
   },
   {

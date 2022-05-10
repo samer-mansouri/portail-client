@@ -205,7 +205,7 @@ export default function App() {
           userRole === 'admin' ? (
             <Route path="*" element={<Navigate to="/accueil" />} />
           ) : (
-            <Route path="*" element={<Navigate to="/kpi_clients" />} />
+            <Route path="*" element={<Navigate to="/informations" />} />
           )
         }
       </Routes>

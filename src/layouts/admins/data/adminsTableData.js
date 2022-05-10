@@ -37,7 +37,7 @@ export default function data() {
   const [users, setUsers] = useState([]);
 
   const fetchData = () => {
-    AdminService.getUtilisateurs()
+    AdminService.getAdmins()
     .then(res => {
       console.log(res.data)
       setUsers(res.data)

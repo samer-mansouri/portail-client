@@ -35,7 +35,7 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
-function Dashboard() {
+function ClientDashboard() {
   const { sales, tasks } = reportsLineChartData;
 
 
@@ -48,8 +48,8 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
-                icon="group_add"
-                title="Nombre de clients actifs"
+                icon="wysiwyg"
+                title="Nombre de licences"
                 count={100}
                 percentage={{
                   color: "success",
@@ -60,18 +60,9 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                icon="group_remove"
-                title="Nombre de clients inactifs"
-                count="20"
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
                 color="success"
                 icon="view_module"
-                title="Nombre de modules"
+                title="Nombre de modules actifs"
                 count="40"
               />
             </MDBox>
@@ -80,19 +71,9 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="primary"
-                icon="wysiwyg"
-                title="Nombre de licences total"
+                icon="confirmation_number"
+                title="Nombre de tickets"
                 count="100"
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="primary"
-                icon="group"
-                title="Nombre d'administrateurs"
-                count="22"
               />
             </MDBox>
           </Grid>
@@ -102,4 +83,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default ClientDashboard;
