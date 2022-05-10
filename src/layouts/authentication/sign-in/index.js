@@ -40,7 +40,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
-import axios from "axios";
+import AuthService from "services/auth.service";
 import TokenService from "services/token.service";
 
 
@@ -54,7 +54,7 @@ function Basic() {
   const [password, setPassword] = useState("");
 
   const sendForm = () => {
-    axios.get(`http://localhost:5000/accounts?email=${email}&password=${password}`)
+    AuthService.login(email, password)
     .then(res => {
       console.log(res.data);
       if (res.data.length > 0) {
