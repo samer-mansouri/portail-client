@@ -63,6 +63,7 @@ function KpiClients() {
                   entriesPerPage={false}
                   showTotalEntries={false}
                   noEndBorder
+                  
                 />
               </MDBox>
             </Card>

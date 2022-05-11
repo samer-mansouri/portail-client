@@ -19,7 +19,7 @@ import { useMemo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 // react-table components
-import { useTable, usePagination, useGlobalFilter, useAsyncDebounce, useSortBy } from "react-table";
+import { useTable, usePagination, useGlobalFilter, useAsyncDebounce, useFilters, useSortBy } from "react-table";
 
 // @mui material components
 import Table from "@mui/material/Table";
@@ -57,9 +57,10 @@ function DataTable({
 
   const tableInstance = useTable(
     { columns, data, initialState: { pageIndex: 0 } },
+    useFilters,
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const {
@@ -76,9 +77,12 @@ function DataTable({
     nextPage,
     previousPage,
     setPageSize,
+    state,
     setGlobalFilter,
-    state: { pageIndex, pageSize, globalFilter },
+    preGlobalFilteredRows
   } = tableInstance;
+
+  const { pageIndex, pageSize, globalFilter } = state;
 
   // Set the default value for the entries per page when component mounts
   useEffect(() => setPageSize(defaultValue || 10), [defaultValue]);
@@ -163,14 +167,14 @@ function DataTable({
                 renderInput={(params) => <MDInput {...params} />}
               />
               <MDTypography variant="caption" color="secondary">
-                &nbsp;&nbsp;entries per page
+                &nbsp;&nbsp;Nombre de lignes par page
               </MDTypography>
             </MDBox>
           )}
           {canSearch && (
             <MDBox width="12rem" ml="auto">
               <MDInput
-                placeholder="Search..."
+                placeholder="Rechercher..."
                 value={search}
                 size="small"
                 fullWidth
@@ -218,7 +222,7 @@ function DataTable({
             );
           })}
         </TableBody>
-      </Table>
+      </Table>  
 
       <MDBox
         display="flex"
@@ -270,7 +274,7 @@ function DataTable({
 // Setting default values for the props of DataTable
 DataTable.defaultProps = {
   entriesPerPage: { defaultValue: 10, entries: [5, 10, 15, 20, 25] },
-  canSearch: false,
+  canSearch: true,
   showTotalEntries: true,
   pagination: { variant: "gradient", color: "info" },
   isSorted: true,
