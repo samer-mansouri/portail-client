@@ -82,7 +82,6 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "id_kpi", accessor: "id_kpi", width: "15%", align: "left" },
       { Header: "webservice id", accessor: "webserviceId", align: "left" },
       { Header: "libelle", accessor: "libelle", align: "left" },
       { Header: "param", accessor: "param", align: "left" },
@@ -95,14 +94,13 @@ export default function data() {
     rows: 
       kpiClients.map((kpi) => {
         return {
-          id_kpi:  <Data text={kpi.id_kpi} />,
-          webserviceId:  <Data text={kpi.webservice.id} />,
-          libelle: <Data text={kpi.webservice.libelle} />,
-          param: <Data text={kpi.webservice.param} />,
-          port: <Data text={kpi.webservice.port} />,
-          url: <Data text={kpi.webservice.url} />,
-          type: <Data text={kpi.webservice.type} />,
-          token: <Data text={kpi.webservice.token} />,
+          webserviceId:  <Data text={kpi.id} />,
+          libelle: <Data text={kpi.libelle} />,
+          param: <Data text={kpi.param} />,
+          port: <Data text={kpi.port} />,
+          url: <Data text={kpi.url} />,
+          type: <Data text={kpi.type} />,
+          token: <Data text={kpi.token} />,
         }
       }),
     

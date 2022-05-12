@@ -21,14 +21,11 @@ import { useState, useEffect } from 'react';
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
 
-// Images
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
 
 import AdminService from "services/admin.service";
+import DeleteModuleModal from "layouts/modals/DeleteModuleModal";
+import MajModuleModal from "layouts/modals/MajModuleModal";
 
 export default function data() {
   
@@ -78,20 +75,23 @@ export default function data() {
     </MDTypography>
   );
 
-
   return {
     columns: [
       { Header: "id_module", accessor: "id", width: "25%", align: "left" },
       { Header: "nom_module", accessor: "nom_module", align: "left" },
       { Header: "couleur", accessor: "couleur", align: "left" },
+      { Header: "modifier", accessor: "modifier", align: "left" },
+      { Header: "supprimer", accessor: "supprimer", align: "left" },
     ],
 
     rows: 
       modules.map((module) => {
         return {
           id:  <Data text={module.id} />,
-          nom_module: <Data text={module.nom_module} />,
-          couleur: <Data text={module.couleur} />,  
+          nom_module: <Data text={module.nom_Module} />,
+          couleur: <Data text={module.couleur} />,
+          modifier: <MajModuleModal module={module} />,
+          supprimer: <DeleteModuleModal module={module} />,
         }
       }),
     

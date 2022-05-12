@@ -53,7 +53,7 @@ function KpiClients() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Liste des KPIS
+                  Liste des webservices
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

@@ -28,13 +28,13 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import utilisateursTableData from "layouts/utilisateurs/data/utilisateursTableData";
+import licencesTableData from "./data/licencesTableData";
 
-function Utilisateurs() {
+function LicenceClient() {
 
   
 
-  const { columns: cColumns, rows: cRows } = utilisateursTableData();
+  const { columns: cColumns, rows: cRows } = licencesTableData();
 
   return (
     <DashboardLayout>
@@ -54,7 +54,7 @@ function Utilisateurs() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Utilisateurs
+                  Licence
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
@@ -64,6 +64,7 @@ function Utilisateurs() {
                   entriesPerPage={false}
                   showTotalEntries={false}
                   noEndBorder
+                  canSearch={false}
                 />
               </MDBox>
             </Card>
@@ -75,4 +76,4 @@ function Utilisateurs() {
   );
 }
 
-export default Utilisateurs;
+export default LicenceClient;

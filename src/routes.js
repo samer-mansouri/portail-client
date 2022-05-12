@@ -41,12 +41,12 @@ import SignIn from "layouts/authentication/sign-in";
 import Clients from "layouts/clients";
 import Webservices from "layouts/webservices";
 import Modules from "layouts/modules";
-import Utilisateurs from "layouts/utilisateurs";
 import KpiClients from "layouts/kpi_clients";
 import ModuleClients from "layouts/module_clients";
 import ClientDashboard from "layouts/dashboard/ClientDashboard";
 import Licences from "layouts/licences";
 import Admins from "layouts/admins";
+import LicenceClient from "layouts/licence_client";
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -89,18 +89,18 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Utilisateurs",
-    key: "utilisateurs",
-    icon: <Icon fontSize="small">group</Icon>,
-    route: "/utilisateurs",
-    component: <Utilisateurs />,
-    auth: "admin",
+    name: "Licence",
+    key: "licence",
+    icon: <Icon fontSize="small">wysiwyg</Icon>,
+    route: "/licence",
+    component: <LicenceClient />,
+    auth: "client",
   },
   {
     type: "collapse",
     name: "Administrateurs",
-    key: "administrateurs",
-    icon: <Icon fontSize="small">admin_panel_settings</Icon>,
+    key: "admins",
+    icon: <Icon fontSize="small">group</Icon>,
     route: "/admins",
     component: <Admins />,
     auth: "admin",
@@ -125,19 +125,19 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Kpi Clients",
-    key: "kpi_clients",
+    name: "Webservices",
+    key: "webservices_client",
     icon: <Icon fontSize="small">key</Icon>,
-    route: "/kpi_clients",
+    route: "/webservices_client",
     component: <KpiClients />,
     auth: "client",
   },
   {
     type: "collapse",
-    name: "Module Clients",
-    key: "module_clients",
+    name: "Modules",
+    key: "modules_client",
     icon: <Icon fontSize="small">grid_view</Icon>,
-    route: "/module_clients",
+    route: "/modules_client",
     component: <ModuleClients />,
     auth: "client",
   },

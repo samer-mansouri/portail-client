@@ -54,7 +54,7 @@ function Admins() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Utilisateurs
+                  Administrateurs
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

@@ -22,16 +22,13 @@ import { useState, useEffect } from "react";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
 
-// Images
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
 
 import MDButton from "components/MDButton";
 import DataModal from "../../modals/DataModal"
 import AdminService from "services/admin.service";
+import DeleteUserModal from "layouts/modals/DeleteUserModal";
+import MajUserModal from "layouts/modals/MajUserModal";
 
 
 
@@ -114,6 +111,11 @@ export default function data() {
   
     columns: [
       { Header: "id_client", accessor: "id_client", width: "45%", align: "left" },
+      { Header: "nom", accessor: "nom", align: "center" },
+      { Header: "prenom", accessor: "prenom", align: "center" },
+      { Header: "email", accessor: "email", align: "center" },
+      { Header: "RS", accessor: "RS", align: "center" },
+      { Header: "TEL", accessor: "TEL", align: "center" },
       { Header: "etat_client", accessor: "etat_client", align: "left" },
       { Header: "paiement", accessor: "paiement", align: "center" },
       { Header: "ip_local", accessor: "ip_local", align: "center" },
@@ -126,13 +128,19 @@ export default function data() {
       { Header: "date_de_paiement", accessor: "date_de_paiement", align: "center" },
       { Header: "date_mise_enservice", accessor: "date_mise_enservice", align: "center" },
       { Header: "Liste des modules", accessor: "modules", align: "center" },
-
+      { Header: "supprimer", accessor: "supprimer", align: "center" },
+      { Header: "modifier", accessor: "modifier", align: "center" },
     ],
 
     rows: 
       clients.map((client) => {
         return {
-          id_client:  <Data text={client.id_client} />,
+          id_client:  <Data text={client.id} />,
+          nom: <Data text={client.utilisateur.nom} />,
+          prenom: <Data text={client.utilisateur.prenom} />,
+          email: <Data text={client.utilisateur.email} />,
+          RS: <Data text={client.utilisateur.RS} />,
+          TEL: <Data text={client.utilisateur.TEL} />,
           etat_client: <EtatClient check={client.etat_client} />,
           paiement: <Paiement check={client.paiement} />,
           ip_local: <Data text={client.ip_local} />,
@@ -144,7 +152,9 @@ export default function data() {
           type_contrat: <Data text={client.type_contrat} />,
           date_de_paiement: <Data text={client.date_de_paiement} />,
           date_mise_enservice: <Data text={client.date_mise_enservice} />,
-          modules: <OpenModalButton clientId={client.id_client}/>
+          modules: <OpenModalButton clientId={client?.id_client}/>,
+          supprimer:  <DeleteUserModal id={client.client_id} />,
+          modifier:  <MajUserModal id={client.client_id} />,
         }
       }),
     

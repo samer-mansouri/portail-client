@@ -29,6 +29,8 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
 import AdminService from "services/admin.service";
+import DeleteWebserviceModal from "layouts/modals/DeleteWebserviceModal";
+import MajWebserviceModal from "layouts/modals/MajWebserviceModal";
 
 export default function data() {
   
@@ -78,6 +80,7 @@ export default function data() {
     </MDTypography>
   );
 
+  
 
   return {
     columns: [
@@ -88,6 +91,8 @@ export default function data() {
       { Header: "port", accessor: "port", align: "center" },
       { Header: "token", accessor: "token", align: "center" },
       { Header: "type", accessor: "type", align: "center" },
+      { Header: "modifier", accessor: "modifier", align: "center" },
+      { Header: "supprimer", accessor: "supprimer", align: "center" },
     ],
 
     rows: 
@@ -100,6 +105,8 @@ export default function data() {
           port: <Data text={webservice.port} />,
           token: <Data text={webservice.token} />,
           type: <Data text={webservice.type} />,
+          modifier: <MajWebserviceModal />,
+          supprimer: <DeleteWebserviceModal />,
         }
       }),
     

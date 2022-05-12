@@ -30,6 +30,8 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
 import AdminService from "services/admin.service";
+import DeleteUserModal from "layouts/modals/DeleteUserModal";
+import MajUserModal from "layouts/modals/MajUserModal";
 
 
 export default function data() {
@@ -94,12 +96,12 @@ export default function data() {
     <MDTypography component="p"  variant="caption" color="text" fontWeight="medium">
       {check ? 'Oui' : 'Non'}
     </MDTypography>
-  );
+  );  
 
 
   return {
     columns: [
-      { Header: "id_pers", accessor: "id_pers", width: "15%", align: "left" },
+      { Header: "id", accessor: "id", width: "15%", align: "center" },
       { Header: "nom", accessor: "nom", align: "center" },
       { Header: "prenom", accessor: "prenom", align: "center" },
       { Header: "email", accessor: "email", align: "center" },
@@ -107,12 +109,14 @@ export default function data() {
       { Header: "RS", accessor: "RS", align: "center" },
       { Header: "TEL", accessor: "TEL", align: "center" },
       { Header: "id_client", accessor: "id_client", align: "center" },
+      { Header: "supprimer", accessor: "supprimer", align: "center" },
+      { Header: "modifier", accessor: "modifier", align: "center" },
     ],
 
     rows: 
       users.map((user) => {
         return {
-          id_pers:  <Data text={user.id_pers} />,
+          id:  <Data text={user.id} />,
           nom:  <Data text={user.nom} />,
           prenom:  <Data text={user.prenom} />,
           email:  <Data text={user.email} />,
@@ -120,6 +124,8 @@ export default function data() {
           RS:  <Data text={user.RS} />,
           TEL:  <Data text={user.TEL} />,
           id_client:  <Data text={user.id_client} />,
+          supprimer:  <DeleteUserModal id={user.id_pers} />,
+          modifier:  <MajUserModal id={user.id_pers} />,
         }
       }),
     

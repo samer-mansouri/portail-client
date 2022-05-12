@@ -42,6 +42,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import AuthService from "services/auth.service";
 import TokenService from "services/token.service";
+import { Alert } from "@mui/material";
 
 
 function Basic() {
@@ -49,6 +50,7 @@ function Basic() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [client, setClient] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [err, setErr] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,21 +61,28 @@ function Basic() {
       console.log(res.data);
       if (res.data.length > 0) {
         console.log(res.data);
-        TokenService.setUser({
-          id: res.data[0].id,
-          email: res.data[0].email,
-          role: res.data[0].type
-      });
-        if(res.data[0].type == "client") {
+        ;
+        if(res.data[0].role == 1) {
+          TokenService.setUser({
+            id: res.data[0].id,
+            email: res.data[0].email,
+            role: "client"
+        })
           setLoggedIn(true);
           setClient(true);
-        } else {
+        } else if(res.data[0].role == 0) {
+          TokenService.setUser({
+            id: res.data[0].id,
+            email: res.data[0].email,
+            role: "admin"
+        })
           setLoggedIn(true);
           setAdmin(true);
         }
         console.log("Logged in");
       } else {
         setLoggedIn(false);
+        setErr(true);
         console.log("Invalid Account");
       }
     }).catch(err =>{
@@ -107,10 +116,15 @@ function Basic() {
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
             SE CONNECTER
           </MDTypography>
+
          
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+        {
+            err ?
+            <Alert severity="error">Veuillez vérifier vos identifiants</Alert> : ''
+          }
+          <MDBox component="form" role="form" pt={3}>
             <MDBox mb={2}>
               <MDInput 
               type="email" 

@@ -2,12 +2,16 @@ import api from "./api";
 
 class ClientService {
 
-    getClientModules(id) {
-        return api.get(`/module_clients?id_client=${id}&expand=module`);
+    getClientModules() {
+        return api.get(`/modules`);
+    }
+
+    getClientLicence(id){
+        return api.get(`/client/${id}`)
     }
 
     getKpiClient(id) {
-        return api.get(`/kpi_clients?id_client=${id}&expand=webservice`);
+        return api.get(`/webservices`);
     }
 
 }

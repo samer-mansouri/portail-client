@@ -85,11 +85,9 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "id", accessor: "id", width: "25%", align: "left" },
-      { Header: "role", accessor: "role", align: "left" },
-      { Header: "module id", accessor: "moduleId", align: "left" },
-      { Header: "nom Module", accessor: "nomModule", align: "left" },
-      { Header: "couleur Module", accessor: "couleurModule", align: "left" },
+      { Header: "id", accessor: "id", width: "25%", align: "center" },
+      { Header: "nom Module", accessor: "nomModule", align: "center" },
+      { Header: "couleur Module", accessor: "couleurModule", align: "center" },
     ],
 
     rows: 
@@ -97,9 +95,8 @@ export default function data() {
         return {
           id:  <Data text={module.id} />,
           role:  <Data text={module.role} />,
-          moduleId:  <Data text={module.moduleId} />,
-          nomModule: <Data text={module.module.nom_module} />,
-          couleurModule: <Data text={module.module.couleur} />,
+          nomModule: <Data text={module.nom_Module} />,
+          couleurModule: <Data text={module.couleur} />,
         }
       }),
     
