@@ -30,6 +30,7 @@ import team4 from "assets/images/team-4.jpg";
 
 import TokenService from '../../../services/token.service';
 import ClientService from "../../../services/client.service";
+import DesactivateModuleModal from 'layouts/modals/DesactivateModuleModal';
 
 export default function data() {
   
@@ -88,6 +89,7 @@ export default function data() {
       { Header: "id", accessor: "id", width: "25%", align: "center" },
       { Header: "nom Module", accessor: "nomModule", align: "center" },
       { Header: "couleur Module", accessor: "couleurModule", align: "center" },
+      { Header: "désactiver", accessor: "desactiver", align: "center" },
     ],
 
     rows: 
@@ -97,6 +99,7 @@ export default function data() {
           role:  <Data text={module.role} />,
           nomModule: <Data text={module.nom_Module} />,
           couleurModule: <Data text={module.couleur} />,
+          desactiver: <DesactivateModuleModal />
         }
       }),
     

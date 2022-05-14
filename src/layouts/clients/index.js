@@ -29,6 +29,8 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import clientsTableData from "layouts/clients/data/clientsTableData";
+import { Box } from "@mui/material";
+import AddClientModal from "layouts/modals/AddClientModal";
 
 function Clients() {
 
@@ -58,6 +60,10 @@ function Clients() {
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
+              <Box px={2} align="right">
+                <AddClientModal />
+                </Box>
+                
                 <DataTable
                   table={{ columns: cColumns, rows: cRows }}
                   isSorted={false}

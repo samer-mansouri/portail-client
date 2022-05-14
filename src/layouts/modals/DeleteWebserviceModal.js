@@ -9,9 +9,20 @@ import MDButton from 'components/MDButton';
 import DataTable from 'examples/Tables/DataTable';
 import MDTypography from 'components/MDTypography';
 import ClientService from "services/client.service";
-
-export default function DeleteWebserviceModal() {
+import AdminService from "services/admin.service";
+export default function DeleteWebserviceModal({webserviceId, deleteFromWebservicesArray}) {
   const [open, setOpen] = React.useState(false);
+
+  const delWebservice = () => {
+    AdminService.deleteWebservice(webserviceId)
+    .then(res => {
+      console.log(res)
+      deleteFromWebservicesArray(webserviceId)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
 
 
 
@@ -58,7 +69,7 @@ export default function DeleteWebserviceModal() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>FERMER</Button>
-          <Button onClick={handleClose}>CONFIRMER</Button>
+          <Button onClick={() => delWebservice()}>CONFIRMER</Button>
         </DialogActions>
       </Dialog>
     </div>

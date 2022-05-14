@@ -32,6 +32,7 @@ import team4 from "assets/images/team-4.jpg";
 import AdminService from "services/admin.service";
 import DeleteUserModal from "layouts/modals/DeleteUserModal";
 import MajUserModal from "layouts/modals/MajUserModal";
+import MajAdminModal from "layouts/modals/MajAdminModal";
 
 
 export default function data() {
@@ -108,7 +109,6 @@ export default function data() {
       { Header: "password", accessor: "password", align: "center" },
       { Header: "RS", accessor: "RS", align: "center" },
       { Header: "TEL", accessor: "TEL", align: "center" },
-      { Header: "id_client", accessor: "id_client", align: "center" },
       { Header: "supprimer", accessor: "supprimer", align: "center" },
       { Header: "modifier", accessor: "modifier", align: "center" },
     ],
@@ -123,9 +123,9 @@ export default function data() {
           password:  <Data text={user.password} />,
           RS:  <Data text={user.RS} />,
           TEL:  <Data text={user.TEL} />,
-          id_client:  <Data text={user.id_client} />,
           supprimer:  <DeleteUserModal id={user.id_pers} />,
-          modifier:  <MajUserModal id={user.id_pers} />,
+          //modifier:  <MajUserModal id={user.id_pers} />,
+          modifier: <MajAdminModal admin={user} />
         }
       }),
     

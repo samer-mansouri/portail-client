@@ -37,6 +37,11 @@ export default function data() {
 
   const [webservices, setWebservices] = useState([]);
 
+  const deleteFromWebservicesArray = (webserviceId) => {
+    const newWebservices = webservices.filter(webservice => webservice.id !== webserviceId);
+    setWebservices(newWebservices);
+  }
+
   const fetchData = () => {
     AdminService.getWebservices()
       .then(res => {
@@ -105,8 +110,13 @@ export default function data() {
           port: <Data text={webservice.port} />,
           token: <Data text={webservice.token} />,
           type: <Data text={webservice.type} />,
-          modifier: <MajWebserviceModal />,
-          supprimer: <DeleteWebserviceModal />,
+          modifier: <MajWebserviceModal 
+            webservice={webservice}
+          />,
+          supprimer: <DeleteWebserviceModal
+           webserviceId={webservice.id}
+           deleteFromWebservicesArray={deleteFromWebservicesArray} 
+           />,
         }
       }),
     

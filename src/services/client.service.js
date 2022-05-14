@@ -14,6 +14,10 @@ class ClientService {
         return api.get(`/webservices`);
     }
 
+    getWebservicesAndModulesCount() {
+        return api.get(`/count`);
+    }
+
 }
 
 export default new ClientService();

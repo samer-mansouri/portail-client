@@ -30,6 +30,8 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 
 import webservicesTableData from "layouts/webservices/data/webservicesTableData";
+import AddWebserviceModal from "layouts/modals/AddWebserviceModal";
+import { Box } from "@mui/material";
 
 function Webservices() {
 
@@ -57,6 +59,11 @@ function Webservices() {
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
+              <Box px={2} align="right">
+                <AddWebserviceModal />
+                </Box>
+                
+
                 <DataTable
                   table={{ columns: cColumns, rows: cRows }}
                   isSorted={false}

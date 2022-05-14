@@ -9,10 +9,21 @@ import MDButton from 'components/MDButton';
 import DataTable from 'examples/Tables/DataTable';
 import MDTypography from 'components/MDTypography';
 import ClientService from "services/client.service";
+import AdminService from "services/admin.service";
 
-export default function DeleteUserModal() {
+export default function DeleteUserModal({ clientId, deleteFromClientsArray }) {
   const [open, setOpen] = React.useState(false);
 
+  console.log(clientId);
+  const delClient = () => {
+    AdminService.deleteClient(clientId)
+    .then(res => {
+      console.log(res)
+      deleteFromClientsArray(clientId)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
 
   const handleClickOpen = () => {
@@ -58,7 +69,7 @@ export default function DeleteUserModal() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>FERMER</Button>
-          <Button onClick={handleClose}>CONFIRMER</Button>
+          <Button onClick={() => { delClient()}}>CONFIRMER</Button>
         </DialogActions>
       </Dialog>
     </div>

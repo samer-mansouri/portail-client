@@ -9,22 +9,30 @@ import MDButton from 'components/MDButton';
 import DataTable from 'examples/Tables/DataTable';
 import MDTypography from 'components/MDTypography';
 import ClientService from "services/client.service";
+import { useForm } from "react-hook-form";
+import TextField from '@mui/material/TextField';
+import { useRef } from 'react';
 import AdminService from 'services/admin.service';
+import { Box } from '@mui/material';
 
-export default function DeleteModuleModal({moduleId, deleteFromModulesArray}) {
+
+
+
+export default function AddModuleModal() {
   const [open, setOpen] = React.useState(false);
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = (data) => {
+    AdminService.addModule(data)
+      .then(() => {
+        console.log(res)
+        window.location.reload(false);
+        setOpen(false);
+      })
+      .catch(() => {setOpen(false);})}
+  
 
-  const delModule = () => {
-    AdminService.deleteModule(moduleId)
-    .then(res => {
-      console.log(res)
-      deleteFromModulesArray(moduleId)
-    }).catch(err => {
-      console.log(err)
-    })
-  }
 
-
+  const form = useRef(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -51,8 +59,8 @@ export default function DeleteModuleModal({moduleId, deleteFromModulesArray}) {
 
   return (
     <div>
-      <MDButton color="error" onClick={handleClickOpen}>
-        SUPPRIMER 
+      <MDButton color="success" onClick={handleClickOpen}>
+        AJOUTER UN MODULE 
       </MDButton>
       <Dialog
         open={open}
@@ -62,17 +70,26 @@ export default function DeleteModuleModal({moduleId, deleteFromModulesArray}) {
         maxWidth={'md'}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Supprimer un module"}
+          AJOUTER UN WEBSERVICE
         </DialogTitle>
         <DialogContent>
-        <DialogContentText id="alert-dialog-description">Confirmer la suppression</DialogContentText>
-        </DialogContent>
+        <form onSubmit={handleSubmit(onSubmit)} ref={f => (form.current = f)}>
+        <TextField 
+        defaultValue=""
+        {...register("nom_Module")}
+        id="standard-basic" label="Nom module" variant="standard" fullWidth />
+        <TextField 
+        defaultValue=""
+        {...register("couleur")}
+        id="standard-basic" label="Couleur Module" variant="standard" fullWidth/>
         <DialogActions>
-          <Button onClick={handleClose}>FERMER</Button>
-          <Button onClick={
-            () => delModule()
-          }>CONFIRMER</Button>
-        </DialogActions>
+        <Button type="submit">CONFIRMER</Button>
+        <Button onClick={handleClose}>FERMER</Button>
+          </DialogActions>
+        
+        </form>
+         </DialogContent>
+        
       </Dialog>
     </div>
   );

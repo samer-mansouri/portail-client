@@ -38,6 +38,11 @@ export default function data() {
 
   const [showModal, setShowModal] = useState(false);
 
+  const deleteFromClientsArray = (clientId) => {
+    const newClients = clients.filter(client => client.id !== clientId);
+    setClients(newClients);
+  }
+
   const fetchData = () => {
     AdminService.getClients()
     .then(res => {
@@ -152,9 +157,9 @@ export default function data() {
           type_contrat: <Data text={client.type_contrat} />,
           date_de_paiement: <Data text={client.date_de_paiement} />,
           date_mise_enservice: <Data text={client.date_mise_enservice} />,
-          modules: <OpenModalButton clientId={client?.id_client}/>,
-          supprimer:  <DeleteUserModal id={client.client_id} />,
-          modifier:  <MajUserModal id={client.client_id} />,
+          modules: <OpenModalButton clientId={client?.id}/>,
+          supprimer:  <DeleteUserModal clientId={client?.id} deleteFromClientsArray={deleteFromClientsArray} />,
+          modifier:  <MajUserModal client={client} />,
         }
       }),
     

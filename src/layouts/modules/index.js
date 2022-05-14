@@ -26,10 +26,11 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
-
+import AddModuleModal from "layouts/modals/AddModuleModal";
 // Data
 
 import modulesTableData from "layouts/modules/data/modulesTableData";
+import { Box } from "@mui/material";
 
 function Modules() {
 
@@ -55,8 +56,15 @@ function Modules() {
                 <MDTypography variant="h6" color="white">
                   Modules
                 </MDTypography>
+
               </MDBox>
               <MDBox pt={3}>
+                <Box px={2} align="right">
+                <AddModuleModal />
+                </Box>
+
+                
+
                 <DataTable
                   table={{ columns: cColumns, rows: cRows }}
                   isSorted={false}

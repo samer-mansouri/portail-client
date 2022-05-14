@@ -9,6 +9,7 @@ import MDButton from 'components/MDButton';
 import DataTable from 'examples/Tables/DataTable';
 import MDTypography from 'components/MDTypography';
 import ClientService from "services/client.service";
+import AdminService from "services/admin.service";
 
 export default function DataModal({ clientId }) {
   const [open, setOpen] = React.useState(false);
@@ -16,7 +17,7 @@ export default function DataModal({ clientId }) {
   const [moduleClients, setModuleClients] = React.useState([]);
 
   const fetchData = () => {
-       ClientService.getClientModules(clientId)
+       AdminService.getModules()
         .then(res => {
             console.log(res.data)
             setModuleClients(res.data)
@@ -54,7 +55,6 @@ export default function DataModal({ clientId }) {
         columns: [
             { Header: "id", accessor: "id", width: "25%", align: "left" },
             { Header: "role", accessor: "role", align: "left" },
-            { Header: "module id", accessor: "moduleId", align: "left" },
             { Header: "nom Module", accessor: "nomModule", align: "left" },
             { Header: "couleur Module", accessor: "couleurModule", align: "left" },
             { Header: "ACTIVATION", accessor: "toggleActivation", width: "25%", align: "left" },
@@ -65,9 +65,8 @@ export default function DataModal({ clientId }) {
               return {
                 id:  <Data text={module.id} />,
                 role:  <Data text={module.role} />,
-                moduleId:  <Data text={module.moduleId} />,
-                nomModule: <Data text={module.module.nom_module} />,
-                couleurModule: <Data text={module.module.couleur} />,
+                nomModule: <Data text={module.nom_Module} />,
+                couleurModule: <Data text={module.couleur} />,
                 toggleActivation: <ToggleActivateButton />
               }
             }),

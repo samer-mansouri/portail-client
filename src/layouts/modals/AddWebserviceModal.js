@@ -9,30 +9,26 @@ import MDButton from 'components/MDButton';
 import DataTable from 'examples/Tables/DataTable';
 import MDTypography from 'components/MDTypography';
 import ClientService from "services/client.service";
-import { useForm } from "react-hook-form";
 import TextField from '@mui/material/TextField';
 import { useRef } from 'react';
+import { useForm } from "react-hook-form";
 import AdminService from 'services/admin.service';
-import { Box } from '@mui/material';
 
-
-
-
-export default function MajModuleModal({ module, updateFromModulesArray }) {
+export default function AddWebserviceModal() {
   const [open, setOpen] = React.useState(false);
+
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = (data) => {
-    AdminService.updateModule(module.id, data)
+    AdminService.addWebService(data)
       .then(() => {
-        console.log(res)
+        console.log(res.data)
         window.location.reload(false);
         setOpen(false);
       })
       .catch(() => {setOpen(false);})}
   
+      const form = useRef(null);
 
-
-  const form = useRef(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,8 +55,8 @@ export default function MajModuleModal({ module, updateFromModulesArray }) {
 
   return (
     <div>
-      <MDButton color="secondary" onClick={handleClickOpen}>
-        MODIFIER 
+      <MDButton color="success" onClick={handleClickOpen}>
+        AJOUTER UN WEBSERVICE 
       </MDButton>
       <Dialog
         open={open}
@@ -70,25 +66,41 @@ export default function MajModuleModal({ module, updateFromModulesArray }) {
         maxWidth={'md'}
       >
         <DialogTitle id="alert-dialog-title">
-          Modifier un module
+          {"Modifier un webservice"}
         </DialogTitle>
         <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)} ref={f => (form.current = f)}>
         <TextField 
-        defaultValue={module.nom_Module}
-        {...register("nom_Module")}
-        id="standard-basic" label="Nom module" variant="standard" fullWidth />
+        defaultValue=""
+        {...register("libelle")}
+        id="standard-basic" label="Libelle" variant="standard" fullWidth />
         <TextField 
-        defaultValue={module.couleur} 
-        {...register("couleur")}
-        id="standard-basic" label="Couleur Module" variant="standard" fullWidth/>
+        defaultValue=""
+        {...register("param")}
+        id="standard-basic" label="Param" variant="standard" fullWidth/>
+        <TextField
+        defaultValue=""
+        {...register("url")}
+        id="standard-basic" label="Url" variant="standard" fullWidth />
+        <TextField
+        defaultValue=""
+        {...register("port")}
+        id="standard-basic" label="Port" variant="standard" fullWidth />
+        <TextField
+        defaultValue=""
+        {...register("token")}
+        id="standard-basic" label="Token" variant="standard" fullWidth />
+        <TextField
+        defaultValue=""
+        {...register("type")}
+        id="standard-basic" label="Type" variant="standard" fullWidth />
         <DialogActions>
         <Button type="submit">CONFIRMER</Button>
         <Button onClick={handleClose}>FERMER</Button>
-          </DialogActions>
+        </DialogActions>
         
         </form>
-         </DialogContent>
+        </DialogContent>
         
       </Dialog>
     </div>

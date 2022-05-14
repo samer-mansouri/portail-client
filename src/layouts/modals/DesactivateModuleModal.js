@@ -9,21 +9,15 @@ import MDButton from 'components/MDButton';
 import DataTable from 'examples/Tables/DataTable';
 import MDTypography from 'components/MDTypography';
 import ClientService from "services/client.service";
-import AdminService from 'services/admin.service';
+import TextField from '@mui/material/TextField';
 
-export default function DeleteModuleModal({moduleId, deleteFromModulesArray}) {
+
+export default function DesactivateModuleModal() {
   const [open, setOpen] = React.useState(false);
 
-  const delModule = () => {
-    AdminService.deleteModule(moduleId)
-    .then(res => {
-      console.log(res)
-      deleteFromModulesArray(moduleId)
-    }).catch(err => {
-      console.log(err)
-    })
-  }
+  const [captureState, setCaptureState] = React.useState(true);
 
+  
 
 
   const handleClickOpen = () => {
@@ -51,8 +45,8 @@ export default function DeleteModuleModal({moduleId, deleteFromModulesArray}) {
 
   return (
     <div>
-      <MDButton color="error" onClick={handleClickOpen}>
-        SUPPRIMER 
+      <MDButton color="warning" onClick={handleClickOpen}>
+        {captureState ? "DESACTIVER" : "ACTIVER"}
       </MDButton>
       <Dialog
         open={open}
@@ -62,16 +56,14 @@ export default function DeleteModuleModal({moduleId, deleteFromModulesArray}) {
         maxWidth={'md'}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Supprimer un module"}
+          {"Désactiver un webservice"}
         </DialogTitle>
         <DialogContent>
-        <DialogContentText id="alert-dialog-description">Confirmer la suppression</DialogContentText>
+            Confirmer la désactivation
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>FERMER</Button>
-          <Button onClick={
-            () => delModule()
-          }>CONFIRMER</Button>
+        <Button onClick={handleClose}>FERMER</Button>
+        <Button type="submit" onClick={() => setCaptureState(false)}>CONFIRMER</Button>
         </DialogActions>
       </Dialog>
     </div>

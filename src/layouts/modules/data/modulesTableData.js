@@ -32,6 +32,20 @@ export default function data() {
 
   const [modules, setModules] = useState([]);
 
+  const deleteFromModulesArray = (moduleId) => {
+    const newModules = modules.filter(module => module.id !== moduleId);
+    setModules(newModules);
+  }
+
+  const [reshow, setReShow] = useState(false);
+
+ 
+
+  const updateFromModulesArray = () => {
+    setReShow(!reshow);
+  }
+
+
   const fetchData = () => {
     AdminService.getModules()
       .then(res => {
@@ -46,7 +60,7 @@ export default function data() {
 
   useEffect(() => {
     fetchData();  
-  }, []);
+  }, [reshow]);
   
   const Author = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
@@ -90,8 +104,9 @@ export default function data() {
           id:  <Data text={module.id} />,
           nom_module: <Data text={module.nom_Module} />,
           couleur: <Data text={module.couleur} />,
-          modifier: <MajModuleModal module={module} />,
-          supprimer: <DeleteModuleModal module={module} />,
+          modifier: <MajModuleModal
+          module={module} updateFromModulesArray={updateFromModulesArray} />,
+          supprimer: <DeleteModuleModal moduleId={module.id} deleteFromModulesArray={deleteFromModulesArray} />,
         }
       }),
     

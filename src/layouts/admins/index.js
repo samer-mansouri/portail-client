@@ -29,6 +29,8 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import adminsTableData from "layouts/admins/data/adminsTableData";
+import AddAdminModal from "layouts/modals/AddAdminModal";
+import { Box } from "@mui/material";
 
 function Admins() {
 
@@ -58,6 +60,10 @@ function Admins() {
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
+              <Box px={2} align="right">
+                <AddAdminModal />
+                </Box>
+
                 <DataTable
                   table={{ columns: cColumns, rows: cRows }}
                   isSorted={false}

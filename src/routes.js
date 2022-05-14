@@ -49,6 +49,8 @@ import Admins from "layouts/admins";
 import LicenceClient from "layouts/licence_client";
 // @mui icons
 import Icon from "@mui/material/Icon";
+import ActivationForm from "layouts/forms/ActivationForm";
+import Logout from "layouts/logout/Logout";
 
 const routes = [
   {
@@ -142,10 +144,25 @@ const routes = [
     auth: "client",
   },
   {
+    name: "Activer un module",
+    key: "activate",
+    icon: <Icon fontSize="small">grid_view</Icon>,
+    route: "/activate",
+    component: <ActivationForm />,
+    auth: "client",
+  },
+  {
     name: "Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
     route: "/connexion",
+    component: <SignIn />,
+  },
+  {
+    name: "Logout",
+    key: "logout",
+    icon: <Icon fontSize="small">logout</Icon>,
+    route: "/logout",
     component: <SignIn />,
   },
 ];

@@ -15,9 +15,11 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import { useState, useEffect } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -34,9 +36,29 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import MDButton from "components/MDButton";
+import { NavLink } from "react-router-dom";
+import ClientService from "services/client.service";
 
 function ClientDashboard() {
   const { sales, tasks } = reportsLineChartData;
+  const [modules, setModules] = useState(0);
+  const [webservices, setWebservices] = useState(0);
+  const fetchData = () => {
+    ClientService.getWebservicesAndModulesCount()
+    .then((res) => {
+      setModules(res.data.modules);
+      setWebservices(res.data.webservices);
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+      }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
 
   return (
@@ -63,7 +85,7 @@ function ClientDashboard() {
                 color="success"
                 icon="view_module"
                 title="Nombre de modules actifs"
-                count="40"
+                count={modules}
               />
             </MDBox>
           </Grid>
@@ -73,12 +95,18 @@ function ClientDashboard() {
                 color="primary"
                 icon="confirmation_number"
                 title="Nombre de tickets"
-                count="100"
+                count={webservices}
               />
             </MDBox>
           </Grid>
         </Grid>
+        <MDBox mt={3}>
+         <NavLink to="/activate"><MDButton color="success" type="submit">
+                    <Icon fontSize="large">add_box</Icon>{'  '}ACTIVER MODULE
+                </MDButton></NavLink>
       </MDBox>
+      </MDBox>
+      
     </DashboardLayout>
   );
 }
