@@ -18,7 +18,7 @@ export default function DeleteModuleModal({moduleId, deleteFromModulesArray}) {
     AdminService.deleteModule(moduleId)
     .then(res => {
       console.log(res)
-      deleteFromModulesArray(moduleId)
+      setOpen(false);
     }).catch(err => {
       console.log(err)
     })

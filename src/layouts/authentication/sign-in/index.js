@@ -91,7 +91,7 @@ function Basic() {
   }
 
   if(loggedIn && client) {
-    return <Navigate to="/clients" />
+    return <Navigate to="/informations" />
   } else if(loggedIn && admin) {
     return <Navigate to="/accueil" />
   }

@@ -134,8 +134,8 @@ export default function data() {
       
          {
           paiement: <Paiement check={data.paiement} />,
-          access_ssh: <Access check={data.access_ssh} />,
-          access_web: <Access check={data.access_web} />,
+          access_ssh: <Data text={data.access_ssh} />,
+          access_web: <Data text={data.access_web} />,
           prix_total: <Data text={data.prix_total} />,
           nbre_licences: <Data text={data.nbre_licence} />,
           type_contrat: <Data text={data.type_contrat} />,

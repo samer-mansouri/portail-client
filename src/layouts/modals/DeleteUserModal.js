@@ -11,15 +11,16 @@ import MDTypography from 'components/MDTypography';
 import ClientService from "services/client.service";
 import AdminService from "services/admin.service";
 
-export default function DeleteUserModal({ clientId, deleteFromClientsArray }) {
+export default function DeleteUserModal({ id, deleteFromClientsArray }) {
   const [open, setOpen] = React.useState(false);
 
-  console.log(clientId);
+  console.log(id);
   const delClient = () => {
-    AdminService.deleteClient(clientId)
+    AdminService.deleteAdmin(id)
     .then(res => {
       console.log(res)
-      deleteFromClientsArray(clientId)
+      setOpen(false);
+
     }).catch(err => {
       console.log(err)
     })
@@ -62,7 +63,7 @@ export default function DeleteUserModal({ clientId, deleteFromClientsArray }) {
         maxWidth={'md'}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Supprimer un utlisateur"}
+          {"Supprimer un administrateur"}
         </DialogTitle>
         <DialogContent>
         <DialogContentText id="alert-dialog-description">Confirmer la suppression</DialogContentText>

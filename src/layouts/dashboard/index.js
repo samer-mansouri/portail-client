@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import { useState, useEffect } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -37,6 +38,30 @@ import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
+  const [countAdmin, setCountAdmin] = useState({});
+
+  useEffect(()=>{
+
+    const getAdmin=()=>{
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Bearer 368453fb4b3711e8a9064ee5c0e057564446381f144a8b476229570eceb84e9b");
+    
+      
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+      
+      fetch("http://127.0.0.1:8000/api/utilisateur-admin-count", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+         setCountAdmin(result)
+        })
+        .catch(error => console.log('error', error));
+    }
+    getAdmin()
+  },[])
 
 
   return (
@@ -62,7 +87,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 icon="group_remove"
                 title="Nombre de clients inactifs"
-                count="20"
+                count={countAdmin.count_client_inactif}
               />
             </MDBox>
           </Grid>
@@ -72,7 +97,7 @@ function Dashboard() {
                 color="success"
                 icon="view_module"
                 title="Nombre de modules"
-                count="40"
+                count={countAdmin.count_module}
               />
             </MDBox>
           </Grid>
@@ -92,7 +117,7 @@ function Dashboard() {
                 color="primary"
                 icon="group"
                 title="Nombre d'administrateurs"
-                count="22"
+                count={countAdmin.count_admin}
               />
             </MDBox>
           </Grid>

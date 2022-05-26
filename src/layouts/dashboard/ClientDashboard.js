@@ -72,7 +72,7 @@ function ClientDashboard() {
                 color="dark"
                 icon="wysiwyg"
                 title="Nombre de licences"
-                count={100}
+                count={1}
                 percentage={{
                   color: "success",
                 }}

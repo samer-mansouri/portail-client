@@ -87,13 +87,13 @@ export default function data() {
 
   const EtatClient = ({ check }) => (
     <MDTypography component="p"  variant="caption" color="text" fontWeight="medium">
-      {check ? 'Actif' : 'Non Actif'}
+      {check == 1 ? 'Actif' : 'Non Actif'}
     </MDTypography>
   );
 
   const Paiement = ({ check }) => (
     <MDTypography component="p"  variant="caption" color="text" fontWeight="medium">
-      {check ? 'Payé' : 'Non Payé'}
+      {check == 1 ? 'Payé' : 'Non Payé'}
     </MDTypography>
   );
 
@@ -150,8 +150,8 @@ export default function data() {
           paiement: <Paiement check={client.paiement} />,
           ip_local: <Data text={client.ip_local} />,
           ip_public: <Data text={client.ip_public} />,
-          access_ssh: <Access check={client.access_ssh} />,
-          access_web: <Access check={client.access_web} />,
+          access_ssh: <Data text={client.access_ssh} />,
+          access_web: <Data text={client.access_web} />,
           prix_total: <Data text={client.prix_total} />,
           nbre_licences: <Data text={client.nbre_licence} />,
           type_contrat: <Data text={client.type_contrat} />,

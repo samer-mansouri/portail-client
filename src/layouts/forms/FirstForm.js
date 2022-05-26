@@ -59,25 +59,10 @@ function FirstForm({ initialData, incrementStep, captureData, incrementProgress 
                 id="standard-basic" label="Numéro de téléphone" variant="standard" fullWidth />
             </Box>
             <Box mt={2} >
-            <FormControl fullWidth>
-        <InputLabel variant="standard" htmlFor="uncontrolled-native">
-          Les solutions
-        </InputLabel>
-        <NativeSelect
-          defaultValue={initialData.solutions}
-          inputProps={{
-            name: 'Les solutions',
-            id: 'uncontrolled-native',
-            
-          }}
-          {...register("solutions")}
-
-        >
-          <option value="Acquision">Acquision</option>
-          <option value="Abonnement mensuel">Abonnement mensuel</option>
-          <option value="Abonnement trimestriel">Abonnement trimestriel</option>
-        </NativeSelect>
-      </FormControl>
+                <TextField
+                defaultValue={initialData.solutions}
+                {...register("solutions")}
+                id="standard-basic" label="Les solutions" variant="standard" fullWidth />
             </Box>
             <Box mt={2} >
                 <TextField
@@ -86,11 +71,27 @@ function FirstForm({ initialData, incrementStep, captureData, incrementProgress 
                 id="standard-basic" label="Nombre de licences" variant="standard" fullWidth />
             </Box>
             
+            
             <Box mt={2} >
-                <TextField
-                defaultValue={initialData.type_engagement}
-                {...register("type_engagement")}
-                id="standard-basic" label="Type d'engagement" variant="standard" fullWidth />
+            <FormControl fullWidth>
+        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+        Type d'engagement
+        </InputLabel>
+        <NativeSelect
+          defaultValue={initialData.type_engagement}
+          inputProps={{
+            name: "Type d'engagement",
+            id: 'uncontrolled-native',
+            
+          }}
+          {...register("type_engagement")}
+
+        >
+          <option value="Acquision">Acquision</option>
+          <option value="Abonnement mensuel">Abonnement mensuel</option>
+          <option value="Abonnement trimestriel">Abonnement trimestriel</option>
+        </NativeSelect>
+      </FormControl>
             </Box>
             <Box mt={3} >
                 <MDButton color="success" type="submit">

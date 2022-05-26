@@ -66,7 +66,7 @@ export default function AddWebserviceModal() {
         maxWidth={'md'}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Modifier un webservice"}
+          {"Ajouter un webservice"}
         </DialogTitle>
         <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)} ref={f => (form.current = f)}>

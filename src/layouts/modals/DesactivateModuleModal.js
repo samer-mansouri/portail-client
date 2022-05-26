@@ -63,7 +63,7 @@ export default function DesactivateModuleModal() {
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>FERMER</Button>
-        <Button type="submit" onClick={() => setCaptureState(false)}>CONFIRMER</Button>
+        <Button type="submit" onClick={() => {setCaptureState(false); setOpen(false)}}>CONFIRMER</Button>
         </DialogActions>
       </Dialog>
     </div>

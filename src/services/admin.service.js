@@ -50,6 +50,10 @@ class AdminService {
         return api.post(`/utilisateurs-store`, data);
     }
 
+    deleteAdmin(id){
+        return api.delete(`/utilisateur-destroy/${id}`);
+    }
+
     getWebservices() {
         return api.get(`/webservices`);
     }
@@ -58,7 +62,7 @@ class AdminService {
         return api.post(`/webservices-store`, data);
     }
 
-    deleteWebservice(){
+    deleteWebservice(id){
         return api.delete(`/webservice-destroy/${id}`);
     }
 

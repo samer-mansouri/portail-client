@@ -70,7 +70,7 @@ export default function AddModuleModal() {
         maxWidth={'md'}
       >
         <DialogTitle id="alert-dialog-title">
-          AJOUTER UN WEBSERVICE
+          AJOUTER UN MODULE
         </DialogTitle>
         <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)} ref={f => (form.current = f)}>

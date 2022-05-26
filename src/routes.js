@@ -82,15 +82,6 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Licences",
-    key: "licences",
-    icon: <Icon fontSize="small">wysiwyg</Icon>,
-    route: "/licences",
-    component: <Licences />,
-    auth: "admin",
-  },
-  {
-    type: "collapse",
     name: "Licence",
     key: "licence",
     icon: <Icon fontSize="small">wysiwyg</Icon>,
@@ -124,15 +115,6 @@ const routes = [
     route: "/modules",
     component: <Modules />,
     auth: "admin",
-  },
-  {
-    type: "collapse",
-    name: "Webservices",
-    key: "webservices_client",
-    icon: <Icon fontSize="small">key</Icon>,
-    route: "/webservices_client",
-    component: <KpiClients />,
-    auth: "client",
   },
   {
     type: "collapse",

@@ -106,7 +106,6 @@ export default function data() {
       { Header: "nom", accessor: "nom", align: "center" },
       { Header: "prenom", accessor: "prenom", align: "center" },
       { Header: "email", accessor: "email", align: "center" },
-      { Header: "password", accessor: "password", align: "center" },
       { Header: "RS", accessor: "RS", align: "center" },
       { Header: "TEL", accessor: "TEL", align: "center" },
       { Header: "supprimer", accessor: "supprimer", align: "center" },
@@ -120,10 +119,9 @@ export default function data() {
           nom:  <Data text={user.nom} />,
           prenom:  <Data text={user.prenom} />,
           email:  <Data text={user.email} />,
-          password:  <Data text={user.password} />,
           RS:  <Data text={user.RS} />,
           TEL:  <Data text={user.TEL} />,
-          supprimer:  <DeleteUserModal id={user.id_pers} />,
+          supprimer:  <DeleteUserModal id={user.id} />,
           //modifier:  <MajUserModal id={user.id_pers} />,
           modifier: <MajAdminModal admin={user} />
         }

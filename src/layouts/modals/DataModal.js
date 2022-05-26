@@ -42,10 +42,15 @@ export default function DataModal({ clientId }) {
   );
 
   const ToggleActivateButton = () => {
+    const [isActive, setIsActive] = React.useState(true);
+    const handleToggle = () => {
+      setIsActive(!isActive);
+    };
     return (
         <MDButton color="secondary"
+            onClick={handleToggle}
         >
-            Activer
+            {isActive ? 'Activer' : 'Désactiver'}
         </MDButton>
     )
   }
@@ -54,7 +59,6 @@ export default function DataModal({ clientId }) {
       return {
         columns: [
             { Header: "id", accessor: "id", width: "25%", align: "left" },
-            { Header: "role", accessor: "role", align: "left" },
             { Header: "nom Module", accessor: "nomModule", align: "left" },
             { Header: "couleur Module", accessor: "couleurModule", align: "left" },
             { Header: "ACTIVATION", accessor: "toggleActivation", width: "25%", align: "left" },
@@ -64,7 +68,6 @@ export default function DataModal({ clientId }) {
             moduleClients.map((module) => {
               return {
                 id:  <Data text={module.id} />,
-                role:  <Data text={module.role} />,
                 nomModule: <Data text={module.nom_Module} />,
                 couleurModule: <Data text={module.couleur} />,
                 toggleActivation: <ToggleActivateButton />
